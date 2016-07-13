@@ -12,8 +12,14 @@ import android.view.View;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.avtechlabs.peacock.Peacock;
+import com.avtechlabs.peacock.enums.Utility;
+import com.avtechlabs.peacock.utilities.ToastUtil;
 import com.jonathenchen.paintracker.R;
 import com.jonathenchen.paintracker.asynctask.ForecastTask;
+import com.jonathenchen.paintracker.db.model.Diet;
+import com.jonathenchen.paintracker.db.model.Symptoms;
+import com.jonathenchen.paintracker.db.model.YourDay;
 import com.jonathenchen.paintracker.listeners.NavBarTabSelectedListener;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
@@ -44,6 +50,25 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         .setAction("Action", null).show();
             }
         });*/
+
+        /*Symptoms symptoms = new Symptoms(1,2,3,4,5);
+        symptoms.save();
+
+        Diet diet = new Diet("none", "some", "alot", "none", "some");
+        diet.save();
+
+        YourDay yourDay = new YourDay(5, 2, 8, "10.00");
+        yourDay.save();
+
+        Symptoms symptoms = Symptoms.findById(Symptoms.class, 1);
+        Diet diet = Diet.findById(Diet.class, 1);
+        YourDay yourDay = YourDay.findById(YourDay.class, 1);
+
+
+        ToastUtil toastUtil = (ToastUtil)new Peacock().getUtility(this, Utility.TOAST);
+        toastUtil.showLongToast(symptoms.morningPain + "");
+        toastUtil.showLongToast(yourDay.sleepTime);
+        toastUtil.showLongToast(diet.glutenIntake);*/
     }
 
     public void setNavBar(){
