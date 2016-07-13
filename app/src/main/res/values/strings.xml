@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Pain Tracker</string>
     <string name="title_activity_main">MainActivity</string>
+
+    <string name="forecast_url">https://api.forecast.io/forecast/</string>
+    <string name="forecast_api_key">0abc55284db5edcc78e83ddd3ce02156</string>
 </resources>

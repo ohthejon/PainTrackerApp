@@ -1,5 +1,8 @@
 package com.jonathenchen.paintracker.activities;
 
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,11 +13,15 @@ import android.view.View;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.jonathenchen.paintracker.R;
+import com.jonathenchen.paintracker.asynctask.ForecastTask;
 import com.jonathenchen.paintracker.listeners.NavBarTabSelectedListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LocationListener {
     BottomNavigationBar bottomNavigationBar;
     FloatingActionButton fab;
+    LocationManager locationManager;
+    Location location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 .setInActiveColor(R.color.black);
 
         setNavBar();
-
+        new ForecastTask(this).execute();
         /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,5 +56,25 @@ public class MainActivity extends AppCompatActivity {
                 .initialise();
 
         bottomNavigationBar.setTabSelectedListener(new NavBarTabSelectedListener());
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }
