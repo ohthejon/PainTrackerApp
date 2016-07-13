@@ -2,6 +2,8 @@ package com.jonathenchen.paintracker.asynctask;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -32,6 +34,7 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
     String url = "";
     MaterialDialog progressDialog;
     OkHttpClient client;
+    boolean internet;
 
     public ForecastTask(Context context){
         this.context = context;
@@ -39,6 +42,7 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
         alert = (AlertUtil)new Peacock().getUtility(this.context, Utility.ALERT);
         url = context.getString(R.string.forecast_url) + context.getString(R.string.forecast_api_key) + location;
         client = new OkHttpClient();
+        internet = internetConnected();
     }
 
     @Override
@@ -54,11 +58,15 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
 
     @Override
     protected JSONObject doInBackground(Void... params) {
+        if(!internet)
+            return null;
+
         Request request = new Request.Builder()
                 .url(url)
                 .build();
 
         Response response;
+
 
         try{
             response = client.newCall(request).execute();
@@ -99,8 +107,25 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
 
             toast.showLongToast(weather.toString());
         }else{
-            toast.showLongToast("unable to get forecast.");
+            if(!internet)
+                toast.showLongToast("No internet connection. Connect to internet!");
+            else
+                toast.showLongToast("unable to get forecast.");
         }
 
+    }
+
+    public boolean internetConnected(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if(connectivityManager != null){
+            NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
+
+            if(networkInfos != null)
+                for(int i=0; i<networkInfos.length; i++)
+                    if(networkInfos[i].getState() == NetworkInfo.State.CONNECTED)
+                        return true;
+        }
+        return false;
     }
 }
