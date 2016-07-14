@@ -40,6 +40,8 @@ public class DietFragment extends Fragment{
             EntryFormUtil.glutenIntake.setValue(gluten, false);
             EntryFormUtil.alcoholIntake.setValue(alcohol, false);
             EntryFormUtil.diaryIntake.setValue(diary, false);
+
+            EntryFormUtil.dietEntry = true;
         }
 
         return view;

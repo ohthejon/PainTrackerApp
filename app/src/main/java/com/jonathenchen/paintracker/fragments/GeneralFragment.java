@@ -36,6 +36,8 @@ public class GeneralFragment extends Fragment {
             EntryFormUtil.stressLevel.setValue(stress, false);
             EntryFormUtil.activityLevel.setValue(activity, false);
             EntryFormUtil.sleepLength.setValue(sleepL, false);
+
+            EntryFormUtil.genralEntry = true;
         }
         return view;
     }

@@ -41,6 +41,8 @@ public class SymptomsFragment extends Fragment{
             EntryFormUtil.eveningPain.setValue(evening, false);
             EntryFormUtil.energy.setValue(energy, false);
             EntryFormUtil.nausea.setValue(nausea, false);
+
+            EntryFormUtil.symptomsEntry = true;
         }
 
         return view;

@@ -36,6 +36,11 @@ public class EntryFormUtil {
     private static int morningP, middayP, eveningP, energyVal, nauseaVal;
     private static int gluten, sugar, carb, diary, alcohol;
     private static String date = new DateUtil().getToday();
+
+    public static boolean genralEntry = false;
+    public static boolean symptomsEntry = false;
+    public static boolean dietEntry = false;
+
     /*private static Symptoms symptoms;
     private static YourDay yourDay;
     private static Diet diet;*/
@@ -87,8 +92,19 @@ public class EntryFormUtil {
             return 10;
     }
     public static void commit(){
-        getGeneralFragmentValues().save();
-        getDietFragmentValues().save();
-        getSymptomsFragmentValues().save();
+
+        if(!genralEntry && !dietEntry && !symptomsEntry){
+            getGeneralFragmentValues().save();
+            getDietFragmentValues().save();
+            getSymptomsFragmentValues().save();
+        }else{
+            if(genralEntry)
+                YourDay.update(getGeneralFragmentValues());
+            if(dietEntry)
+                Diet.update(getDietFragmentValues());
+            if(symptomsEntry)
+                Symptoms.update(getSymptomsFragmentValues());
+        }
+
     }
 }
