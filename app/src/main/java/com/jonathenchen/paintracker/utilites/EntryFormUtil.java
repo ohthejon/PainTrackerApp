@@ -78,6 +78,14 @@ public class EntryFormUtil {
             return "A Lot";
     }
 
+    public static float getIntakeVal(String intake){
+        if(intake.equals("None"))
+            return 0;
+        else if(intake.equals("Some"))
+            return 5;
+        else
+            return 10;
+    }
     public static void commit(){
         getGeneralFragmentValues().save();
         getDietFragmentValues().save();

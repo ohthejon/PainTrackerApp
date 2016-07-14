@@ -24,6 +24,9 @@ import com.jonathenchen.paintracker.db.model.YourDay;
 import com.jonathenchen.paintracker.listeners.NavBarTabSelectedListener;
 import com.jonathenchen.paintracker.utilites.DateUtil;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements LocationListener {
     BottomNavigationBar bottomNavigationBar;
     FloatingActionButton fab;
@@ -44,6 +47,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 .setInActiveColor(R.color.black);
 
         setNavBar();
+
+        List<Diet> dietList = Diet.find(Diet.class, "date = ?", new DateUtil().getToday());
+        /*if(dietList.size() > 0){
+            Diet diet = dietList.get(0);
+            Log.d("entry", diet.diaryIntake);
+            Log.d("entry", diet.sugarIntake);
+            Log.d("entry", diet.alcoholIntake);
+            Log.d("entry", diet.glutenIntake);
+            Log.d("entry", diet.carbIntake);
+        }*/
+
         //YourDay yourDay = YourDay.f
         //Log.d("Date", new DateUtil().getToday());
         //new ForecastTask(this).execute();

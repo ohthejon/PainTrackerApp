@@ -7,8 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jonathenchen.paintracker.R;
+import com.jonathenchen.paintracker.db.model.Symptoms;
+import com.jonathenchen.paintracker.db.model.YourDay;
+import com.jonathenchen.paintracker.utilites.DateUtil;
 import com.jonathenchen.paintracker.utilites.EntryFormUtil;
 import com.rey.material.widget.Slider;
+
+import java.util.List;
 
 public class GeneralFragment extends Fragment {
     @Override
@@ -20,6 +25,18 @@ public class GeneralFragment extends Fragment {
         EntryFormUtil.stressLevel = (Slider)view.findViewById(R.id.slider_stress_level);
         EntryFormUtil.sleepLength = (Slider)view.findViewById(R.id.slider_sleep_length);
 
+
+        List<YourDay> generals = YourDay.find(YourDay.class, "date = ?", new DateUtil().getToday());
+        if(generals.size() > 0){
+            YourDay general = generals.get(0);
+            float stress = general.stressLevel;
+            float activity = general.activityLevel;
+            float sleepL = general.sleepLength;
+
+            EntryFormUtil.stressLevel.setValue(stress, false);
+            EntryFormUtil.activityLevel.setValue(activity, false);
+            EntryFormUtil.sleepLength.setValue(sleepL, false);
+        }
         return view;
     }
 }
