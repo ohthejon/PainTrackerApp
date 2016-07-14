@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -21,6 +22,7 @@ import com.jonathenchen.paintracker.db.model.Diet;
 import com.jonathenchen.paintracker.db.model.Symptoms;
 import com.jonathenchen.paintracker.db.model.YourDay;
 import com.jonathenchen.paintracker.listeners.NavBarTabSelectedListener;
+import com.jonathenchen.paintracker.utilites.DateUtil;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
     BottomNavigationBar bottomNavigationBar;
@@ -42,7 +44,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 .setInActiveColor(R.color.black);
 
         setNavBar();
-        new ForecastTask(this).execute();
+        //YourDay yourDay = YourDay.f
+        //Log.d("Date", new DateUtil().getToday());
+        //new ForecastTask(this).execute();
         /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +84,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 .addItem(new BottomNavigationItem(R.drawable.ic_email_black_24dp, "Placeholder"))
                 .initialise();
 
-        bottomNavigationBar.setTabSelectedListener(new NavBarTabSelectedListener());
+
+        bottomNavigationBar.setTabSelectedListener(new NavBarTabSelectedListener(this, getSupportFragmentManager()));
     }
 
     @Override
