@@ -2,11 +2,13 @@ package com.jonathenchen.paintracker.listeners;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.jonathenchen.paintracker.activities.DetailsActivity;
 import com.jonathenchen.paintracker.fragments.FragmentDialog;
 
 /**
@@ -27,16 +29,10 @@ public class NavBarTabSelectedListener implements BottomNavigationBar.OnTabSelec
             case 2:
                 FragmentDialog overlay = new FragmentDialog();
                 overlay.show(fragmentManager, "Form");
-
-
-                /*AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("How was your day?")
-                        .setView(overlay.getView());
-
-                builder.setPositiveButton("OK", null);
-                builder.setNegativeButton("Cancel", null);
-
-                builder.show();*/
+                break;
+            case 3:
+                Intent intent = new Intent(context, DetailsActivity.class);
+                context.startActivity(intent);
                 break;
         }
     }
