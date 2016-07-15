@@ -28,6 +28,7 @@ public class WeatherFragment extends Fragment {
         /*if(EntryFormUtil.temperature == null && EntryFormUtil.pressure == null && EntryFormUtil.humidity == null && EntryFormUtil.precipitation == null)
             temperature.setText("Pulling macrodata failed");
         else{*/
+            new ForecastTask(getContext()).execute();
             temperature.setText("Weather: " + EntryFormUtil.temperature + " F");
             pressure.setText("Pressure: " + EntryFormUtil.pressure + " in");
             humdity.setText("Humidity: " + EntryFormUtil.humidity + "%");

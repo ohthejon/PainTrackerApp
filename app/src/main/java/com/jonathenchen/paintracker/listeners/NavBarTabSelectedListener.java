@@ -1,14 +1,11 @@
 package com.jonathenchen.paintracker.listeners;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
-import android.view.View;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
-import com.jonathenchen.paintracker.activities.DetailsActivity;
+import com.jonathenchen.paintracker.R;
+import com.jonathenchen.paintracker.fragments.DetailsFragment;
 import com.jonathenchen.paintracker.fragments.FragmentDialog;
 
 /**
@@ -16,10 +13,12 @@ import com.jonathenchen.paintracker.fragments.FragmentDialog;
  */
 public class NavBarTabSelectedListener implements BottomNavigationBar.OnTabSelectedListener {
     Context context;
-    FragmentManager fragmentManager;
+    FragmentManager supportfragmentManager;
+    android.app.FragmentManager fragmentManager;
 
-    public NavBarTabSelectedListener(Context context, FragmentManager fragmentManager){
+    public NavBarTabSelectedListener(Context context, FragmentManager supportfragmentManager, android.app.FragmentManager fragmentManager){
         this.context = context;
+        this.supportfragmentManager = supportfragmentManager;
         this.fragmentManager = fragmentManager;
     }
 
@@ -28,11 +27,13 @@ public class NavBarTabSelectedListener implements BottomNavigationBar.OnTabSelec
         switch(position){
             case 2:
                 FragmentDialog overlay = new FragmentDialog();
-                overlay.show(fragmentManager, "Form");
+                overlay.show(supportfragmentManager, "Form");
                 break;
             case 3:
-                Intent intent = new Intent(context, DetailsActivity.class);
-                context.startActivity(intent);
+                /*Intent intent = new Intent(context, DetailsActivity.class);
+                context.startActivity(intent);*/
+                DetailsFragment detailsFragment = new DetailsFragment();
+                fragmentManager.beginTransaction().add(R.id.fragment_container, detailsFragment, "Details").commit();
                 break;
         }
     }
