@@ -24,4 +24,16 @@ public class DateUtil {
 
         return date.toString();
     }
+
+    public String getDate(Calendar cal){
+        StringBuilder date = new StringBuilder();
+
+        date.append(cal.get(Calendar.MONTH) + 1);
+        date.append("/");
+        date.append(cal.get(Calendar.DATE));
+        date.append(" ");
+        date.append(days[cal.get(Calendar.DAY_OF_WEEK)]);
+
+        return date.toString();
+    }
 }

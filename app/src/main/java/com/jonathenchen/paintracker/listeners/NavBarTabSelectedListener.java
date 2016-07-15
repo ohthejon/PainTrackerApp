@@ -29,11 +29,10 @@ public class NavBarTabSelectedListener implements BottomNavigationBar.OnTabSelec
                 FragmentDialog overlay = new FragmentDialog();
                 overlay.show(supportfragmentManager, "Form");
                 break;
+
             case 3:
-                /*Intent intent = new Intent(context, DetailsActivity.class);
-                context.startActivity(intent);*/
                 DetailsFragment detailsFragment = new DetailsFragment();
-                fragmentManager.beginTransaction().add(R.id.fragment_container, detailsFragment, "Details").commit();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, detailsFragment, "Details").commit();
                 break;
         }
     }

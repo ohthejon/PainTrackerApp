@@ -25,15 +25,14 @@ public class WeatherFragment extends Fragment {
         TextView humdity = (TextView)view.findViewById(R.id.textview_humidity);
         TextView precipitation = (TextView)view.findViewById(R.id.textview_precipitation);
 
-        /*if(EntryFormUtil.temperature == null && EntryFormUtil.pressure == null && EntryFormUtil.humidity == null && EntryFormUtil.precipitation == null)
-            temperature.setText("Pulling macrodata failed");
-        else{*/
-            new ForecastTask(getContext()).execute();
+        if(EntryFormUtil.temperature.equals("0")){
+            temperature.setText("Connect to internet to pull macrodata");
+        }else {
             temperature.setText("Weather: " + EntryFormUtil.temperature + " F");
             pressure.setText("Pressure: " + EntryFormUtil.pressure + " in");
             humdity.setText("Humidity: " + EntryFormUtil.humidity + "%");
-            precipitation.setText("Precip:" + EntryFormUtil.precipitation + " %");
-        //}
+            precipitation.setText("Precip: " + EntryFormUtil.precipitation + "in");
+        }
 
 
         return view;

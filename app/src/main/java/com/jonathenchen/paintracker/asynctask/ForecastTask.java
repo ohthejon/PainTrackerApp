@@ -46,16 +46,6 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
         internet = internetConnected();
     }
 
-    @Override
-    protected void onPreExecute(){
-        progressDialog = new MaterialDialog.Builder((Activity)context)
-                .title("Please wait")
-                .content("Getting current forecast ...")
-                .cancelable(false)
-                .progress(true, 0)
-                .build();
-        progressDialog.show();
-    }
 
     @Override
     protected JSONObject doInBackground(Void... params) {
@@ -86,21 +76,11 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
 
     @Override
     protected void onPostExecute(JSONObject forecast){
-        progressDialog.dismiss();
-
         if(forecast != null){
             StringBuilder weather = new StringBuilder();
             try{
                 forecast = forecast.getJSONObject("currently");
                 String temperature = "temperature", pressure = "pressure", humidity = "humidity", precipitation = "precipIntensity";
-
-                /*weather.append(forecast.get(temperature));
-                weather.append(",");
-                weather.append(forecast.get(pressure));
-                weather.append(",");
-                weather.append(forecast.get(humidity));
-                weather.append(",");
-                weather.append(forecast.get(precipitation));*/
 
                 EntryFormUtil.temperature = forecast.get(temperature) + "";
                 EntryFormUtil.pressure = forecast.get(pressure) + "";
@@ -111,14 +91,7 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
                 ex.printStackTrace();
             }
 
-            //toast.showLongToast(weather.toString());
-        }else{
-            if(!internet)
-                toast.showLongToast("No internet connection. Connect to internet!");
-            else
-                toast.showLongToast("unable to get forecast.");
         }
-
     }
 
     public boolean internetConnected(){

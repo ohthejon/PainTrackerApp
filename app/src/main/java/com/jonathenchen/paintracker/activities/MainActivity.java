@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.jonathenchen.paintracker.R;
+import com.jonathenchen.paintracker.asynctask.ForecastTask;
 import com.jonathenchen.paintracker.views.NavBar;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
@@ -25,10 +28,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        new ForecastTask(this).execute();
+
         bottomNavigationBar = (BottomNavigationBar)findViewById(R.id.bottom_navigation_bar);
         new NavBar(this, bottomNavigationBar, getSupportFragmentManager(), getFragmentManager()).set();
     }
-
+    
     public void setNavBar(){
 
     }

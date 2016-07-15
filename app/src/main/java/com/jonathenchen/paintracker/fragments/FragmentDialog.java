@@ -18,6 +18,7 @@ import com.avtechlabs.peacock.Peacock;
 import com.avtechlabs.peacock.enums.Utility;
 import com.avtechlabs.peacock.utilities.ToastUtil;
 import com.jonathenchen.paintracker.R;
+import com.jonathenchen.paintracker.listeners.DateListener;
 import com.jonathenchen.paintracker.utilites.DateUtil;
 import com.jonathenchen.paintracker.utilites.EntryFormUtil;
 
@@ -106,6 +107,7 @@ public class FragmentDialog extends DialogFragment {
                 getDialog().dismiss();
                 EntryFormUtil.commit();
                 toast.showLongToast("entry added ..");
+
             }
         });
 
@@ -124,8 +126,9 @@ public class FragmentDialog extends DialogFragment {
     }
 
     public void initDate(View view){
-        TextView textViewDate = (TextView)view.findViewById(R.id.textViewDate);
+        final TextView textViewDate = (TextView)view.findViewById(R.id.textViewDate);
         textViewDate.setText(new DateUtil().getToday());
+        textViewDate.setOnClickListener(new DateListener(textViewDate, getActivity()));
     }
 
 }

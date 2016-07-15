@@ -32,7 +32,7 @@ public class EntryFormUtil {
     public static Slider alcoholIntake = null;
 
     private static int activity, stress, sleepL;
-    private static String sleepT;
+    public static String sleepT = "";
     private static int morningP, middayP, eveningP, energyVal, nauseaVal;
     private static int gluten, sugar, carb, diary, alcohol;
     private static String date = new DateUtil().getToday();
@@ -41,10 +41,10 @@ public class EntryFormUtil {
     public static boolean symptomsEntry = false;
     public static boolean dietEntry = false;
 
-    public static String temperature = null;
-    public static String pressure = null;
-    public static String humidity = null;
-    public static String precipitation = null;
+    public static String temperature = "0";
+    public static String pressure = "0";
+    public static String humidity = "0";
+    public static String precipitation = "0";
 
     /*private static Symptoms symptoms;
     private static YourDay yourDay;
@@ -56,7 +56,7 @@ public class EntryFormUtil {
         sleepL = (activityLevel != null) ? (int)sleepLength.getExactValue() : 0;
         //activity = (activityLevel != null) ? (int)activityLevel.getExactValue() : 0;
 
-        return new YourDay(activity, stress, sleepL, "10:00 PM", date);
+        return new YourDay(activity, stress, sleepL, sleepT, date);
     }
 
     public static Symptoms getSymptomsFragmentValues(){
