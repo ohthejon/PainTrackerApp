@@ -13,6 +13,7 @@ import com.avtechlabs.peacock.enums.Utility;
 import com.avtechlabs.peacock.utilities.AlertUtil;
 import com.avtechlabs.peacock.utilities.ToastUtil;
 import com.jonathenchen.paintracker.R;
+import com.jonathenchen.paintracker.utilites.EntryFormUtil;
 
 import org.json.JSONObject;
 
@@ -93,19 +94,24 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
                 forecast = forecast.getJSONObject("currently");
                 String temperature = "temperature", pressure = "pressure", humidity = "humidity", precipitation = "precipIntensity";
 
-                weather.append(forecast.get(temperature));
+                /*weather.append(forecast.get(temperature));
                 weather.append(",");
                 weather.append(forecast.get(pressure));
                 weather.append(",");
                 weather.append(forecast.get(humidity));
                 weather.append(",");
-                weather.append(forecast.get(precipitation));
+                weather.append(forecast.get(precipitation));*/
+
+                EntryFormUtil.temperature = forecast.get(temperature) + "";
+                EntryFormUtil.pressure = forecast.get(pressure) + "";
+                EntryFormUtil.humidity = (int)(Double.parseDouble(forecast.get(humidity) + "") * 100) + "";
+                EntryFormUtil.precipitation = forecast.get(precipitation) + "";
 
             } catch (Exception ex){
                 ex.printStackTrace();
             }
 
-            toast.showLongToast(weather.toString());
+            //toast.showLongToast(weather.toString());
         }else{
             if(!internet)
                 toast.showLongToast("No internet connection. Connect to internet!");

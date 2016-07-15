@@ -41,6 +41,11 @@ public class EntryFormUtil {
     public static boolean symptomsEntry = false;
     public static boolean dietEntry = false;
 
+    public static String temperature = null;
+    public static String pressure = null;
+    public static String humidity = null;
+    public static String precipitation = null;
+
     /*private static Symptoms symptoms;
     private static YourDay yourDay;
     private static Diet diet;*/

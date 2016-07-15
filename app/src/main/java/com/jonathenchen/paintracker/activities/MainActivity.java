@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         setNavBar();
 
+        new ForecastTask(this).execute();
         List<Diet> dietList = Diet.find(Diet.class, "date = ?", new DateUtil().getToday());
         /*if(dietList.size() > 0){
             Diet diet = dietList.get(0);

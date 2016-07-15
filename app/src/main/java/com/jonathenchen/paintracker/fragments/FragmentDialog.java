@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,9 @@ public class FragmentDialog extends DialogFragment {
         viewPager = (ViewPager)view.findViewById(R.id.pager);
         viewPager.setAdapter(sectionsPagerAdaper);
 
+        //PagerTabStrip tabStrip = (PagerTabStrip)viewPager.findViewById(R.id.pager_tab);
+
+
         toast = (ToastUtil)new Peacock().getUtility(getContext(), Utility.TOAST);
 
         return view;
@@ -62,6 +66,8 @@ public class FragmentDialog extends DialogFragment {
                     return new SymptomsFragment();
                 case 2:
                     return new DietFragment();
+                case 3:
+                    return new WeatherFragment();
                 default:
                     return null;
             }
@@ -69,7 +75,7 @@ public class FragmentDialog extends DialogFragment {
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
 
         @Override
@@ -81,6 +87,8 @@ public class FragmentDialog extends DialogFragment {
                     return "SYMPTOMS";
                 case 2:
                     return "DIET";
+                case 3:
+                    return "MACRODATA";
                 default:
                     return null;
             }
