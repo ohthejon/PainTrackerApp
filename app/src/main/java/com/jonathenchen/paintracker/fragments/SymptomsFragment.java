@@ -33,7 +33,7 @@ public class SymptomsFragment extends Fragment{
             float morning = symptoms.morningPain;
             float midday = symptoms.middayPain;
             float evening = symptoms.eveningPain;
-            float energy = symptoms.eveningPain;
+            float energy = symptoms.energy;
             float nausea = symptoms.nausea;
 
             EntryFormUtil.morningPain.setValue(morning, false);

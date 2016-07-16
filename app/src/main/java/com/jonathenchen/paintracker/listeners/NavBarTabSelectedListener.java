@@ -44,6 +44,11 @@ public class NavBarTabSelectedListener implements BottomNavigationBar.OnTabSelec
 
     @Override
     public void onTabReselected(int position) {
-
+        switch(position){
+            case 3:
+                DetailsFragment detailsFragment = new DetailsFragment();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, detailsFragment, "Details").commit();
+                break;
+        }
     }
 }

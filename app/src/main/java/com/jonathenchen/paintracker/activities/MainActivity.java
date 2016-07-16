@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -37,7 +41,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         EntryFormUtil.supportFragmentManager = getSupportFragmentManager();
         EntryFormUtil.bottomNavigationBar = bottomNavigationBar;
     }
-    
+
+
     public void setNavBar(){
 
     }

@@ -4,11 +4,15 @@ import android.app.ListFragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.avtechlabs.peacock.Peacock;
 import com.avtechlabs.peacock.enums.Utility;
@@ -17,6 +21,7 @@ import com.jonathenchen.paintracker.R;
 import com.jonathenchen.paintracker.adapters.DetailsAdapter;
 import com.jonathenchen.paintracker.db.model.Symptoms;
 import com.jonathenchen.paintracker.utilites.DateUtil;
+import com.jonathenchen.paintracker.utilites.DetailsUtil;
 import com.jonathenchen.paintracker.utilites.EntryFormUtil;
 
 import java.math.RoundingMode;
@@ -32,6 +37,7 @@ public class DetailsFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_details, container, false);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -39,18 +45,25 @@ public class DetailsFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
+        String title = "";
         Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.DATE, -7);
+        cal.add(Calendar.DATE, -7 * DetailsUtil.weekIncrement);
         cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
         String[] dates = new String[7];
         DateUtil dateUtil = new DateUtil();
         for(int i=0; i<7; i++){
 
             dates[i] = dateUtil.getDate(cal);
-            Log.d("adddate", new DateUtil().getDate(cal));
+
+            if(i==0)
+                title = dateUtil.getMonth(cal.get(Calendar.MONTH)) + " " + cal.get(Calendar.DAY_OF_MONTH) + "- ";
+            if(i==6)
+                title += dateUtil.getMonth(cal.get(Calendar.MONTH)) + " " + cal.get(Calendar.DAY_OF_MONTH) + "," + cal.get(Calendar.YEAR);
+
             cal.add(Calendar.DATE, 1);
         }
 
+        getActivity().setTitle(title);
         DecimalFormat df = new DecimalFormat(("#.#"));
         df.setRoundingMode(RoundingMode.CEILING);
 
@@ -93,5 +106,27 @@ public class DetailsFragment extends ListFragment {
             EntryFormUtil.show();
         }
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_action_bar, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.action_prev:
+                DetailsUtil.weekIncrement++;
+                EntryFormUtil.bottomNavigationBar.selectTab(3);
+                break;
+            case R.id.action_next:
+                DetailsUtil.weekIncrement--;
+                EntryFormUtil.bottomNavigationBar.selectTab(3);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

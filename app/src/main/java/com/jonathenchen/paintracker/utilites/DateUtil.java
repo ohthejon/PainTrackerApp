@@ -10,6 +10,11 @@ import java.util.Date;
 public class DateUtil {
 
     public String[] days = {"", "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"};
+    public String[] months = {"Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
+    public String getMonth(int i){
+        return months[i];
+    }
 
     public String getToday(){
         StringBuilder date = new StringBuilder();
