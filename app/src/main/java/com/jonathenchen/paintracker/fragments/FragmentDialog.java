@@ -106,8 +106,7 @@ public class FragmentDialog extends DialogFragment {
             public void onClick(View v) {
                 getDialog().dismiss();
                 EntryFormUtil.commit();
-                toast.showLongToast("entry added ..");
-
+                EntryFormUtil.bottomNavigationBar.selectTab(3); //go to details tab after adding entry
             }
         });
 
@@ -127,7 +126,7 @@ public class FragmentDialog extends DialogFragment {
 
     public void initDate(View view){
         final TextView textViewDate = (TextView)view.findViewById(R.id.textViewDate);
-        textViewDate.setText(new DateUtil().getToday());
+        textViewDate.setText(EntryFormUtil.date);
         textViewDate.setOnClickListener(new DateListener(textViewDate, getActivity()));
     }
 

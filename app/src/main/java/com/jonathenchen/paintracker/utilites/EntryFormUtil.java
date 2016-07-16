@@ -1,8 +1,13 @@
 package com.jonathenchen.paintracker.utilites;
 
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
+
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.jonathenchen.paintracker.db.model.Diet;
 import com.jonathenchen.paintracker.db.model.Symptoms;
 import com.jonathenchen.paintracker.db.model.YourDay;
+import com.jonathenchen.paintracker.fragments.FragmentDialog;
 import com.rey.material.widget.Slider;
 
 /**
@@ -35,7 +40,7 @@ public class EntryFormUtil {
     public static String sleepT = "";
     private static int morningP, middayP, eveningP, energyVal, nauseaVal;
     private static int gluten, sugar, carb, diary, alcohol;
-    private static String date = new DateUtil().getToday();
+    public static String date = new DateUtil().getToday();
 
     public static boolean genralEntry = false;
     public static boolean symptomsEntry = false;
@@ -46,6 +51,8 @@ public class EntryFormUtil {
     public static String humidity = "0";
     public static String precipitation = "0";
 
+    public static FragmentManager supportFragmentManager = null;
+    public static BottomNavigationBar bottomNavigationBar = null;
     /*private static Symptoms symptoms;
     private static YourDay yourDay;
     private static Diet diet;*/
@@ -98,18 +105,26 @@ public class EntryFormUtil {
     }
     public static void commit(){
 
-        if(!genralEntry && !dietEntry && !symptomsEntry){
+        if(YourDay.find(YourDay.class, "date = ?", date).size() == 0){
             getGeneralFragmentValues().save();
             getDietFragmentValues().save();
             getSymptomsFragmentValues().save();
+            Log.d("entries", "save");
         }else{
-            if(genralEntry)
-                YourDay.update(getGeneralFragmentValues());
-            if(dietEntry)
-                Diet.update(getDietFragmentValues());
-            if(symptomsEntry)
-                Symptoms.update(getSymptomsFragmentValues());
+                YourDay.deleteAll(YourDay.class, "date = ?", date);
+                Diet.deleteAll(Diet.class, "date = ?", date);
+                Symptoms.deleteAll(Symptoms.class, "date = ?", date);
+
+                getGeneralFragmentValues().save();
+                getDietFragmentValues().save();
+                getSymptomsFragmentValues().save();
+                Log.d("entries", "up");
         }
 
+    }
+
+    public static void show(){
+        FragmentDialog overlay = new FragmentDialog();
+        overlay.show(EntryFormUtil.supportFragmentManager, "entry" + Math.random());
     }
 }

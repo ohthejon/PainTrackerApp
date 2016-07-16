@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class DateUtil {
 
-    public String[] days = {"SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"};
+    public String[] days = {"", "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"};
 
     public String getToday(){
         StringBuilder date = new StringBuilder();

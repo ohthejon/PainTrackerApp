@@ -26,7 +26,7 @@ public class DietFragment extends Fragment{
         EntryFormUtil.alcoholIntake = (Slider)view.findViewById(R.id.slider_alcohol);
         EntryFormUtil.diaryIntake = (Slider)view.findViewById(R.id.slider_diary);
 
-        List<Diet> dietList = Diet.find(Diet.class, "date = ?", new DateUtil().getToday());
+        List<Diet> dietList = Diet.find(Diet.class, "date = ?", EntryFormUtil.date);
         if(dietList.size() > 0){
             Diet diet = dietList.get(0);
             float carb = EntryFormUtil.getIntakeVal(diet.carbIntake);

@@ -39,8 +39,10 @@ public class DateListener implements View.OnClickListener {
                 Calendar newCal = Calendar.getInstance();
                 newCal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 newCal.set(Calendar.YEAR, year);
-                newCal.set(Calendar.MONTH, month);
-                date.setText(new DateUtil().getDate(newCal));
+                newCal.set(Calendar.MONTH, monthOfYear);
+                String dateChosen = new DateUtil().getDate(newCal);
+                date.setText(dateChosen);
+                EntryFormUtil.date = dateChosen;
 
             }
         }, year, month, day);

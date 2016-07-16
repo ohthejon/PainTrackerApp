@@ -27,7 +27,7 @@ public class SymptomsFragment extends Fragment{
         EntryFormUtil.energy = (Slider)view.findViewById(R.id.slider_energy);
         EntryFormUtil.nausea = (Slider)view.findViewById(R.id.slider_nausea);
 
-        List<Symptoms> symptomsList = Symptoms.find(Symptoms.class, "date = ?", new DateUtil().getToday());
+        List<Symptoms> symptomsList = Symptoms.find(Symptoms.class, "date = ?", EntryFormUtil.date);
         if(symptomsList.size() > 0){
             Symptoms symptoms = symptomsList.get(0);
             float morning = symptoms.morningPain;

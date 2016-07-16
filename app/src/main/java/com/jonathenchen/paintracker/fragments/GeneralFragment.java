@@ -34,7 +34,7 @@ public class GeneralFragment extends Fragment {
 
         timer.setOnClickListener(new TimeListener(timer, getActivity()));
 
-        List<YourDay> generals = YourDay.find(YourDay.class, "date = ?", new DateUtil().getToday());
+        List<YourDay> generals = YourDay.find(YourDay.class, "date = ?", EntryFormUtil.date);
         if(generals.size() > 0){
             YourDay general = generals.get(0);
             float stress = general.stressLevel;

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.jonathenchen.paintracker.R;
 import com.jonathenchen.paintracker.asynctask.ForecastTask;
+import com.jonathenchen.paintracker.utilites.EntryFormUtil;
 import com.jonathenchen.paintracker.views.NavBar;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         bottomNavigationBar = (BottomNavigationBar)findViewById(R.id.bottom_navigation_bar);
         new NavBar(this, bottomNavigationBar, getSupportFragmentManager(), getFragmentManager()).set();
+
+        EntryFormUtil.supportFragmentManager = getSupportFragmentManager();
+        EntryFormUtil.bottomNavigationBar = bottomNavigationBar;
     }
     
     public void setNavBar(){

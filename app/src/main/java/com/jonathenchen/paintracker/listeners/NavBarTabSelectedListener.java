@@ -7,6 +7,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.jonathenchen.paintracker.R;
 import com.jonathenchen.paintracker.fragments.DetailsFragment;
 import com.jonathenchen.paintracker.fragments.FragmentDialog;
+import com.jonathenchen.paintracker.utilites.EntryFormUtil;
 
 /**
  * Created by adhithyan-3592 on 12/07/16.
@@ -26,8 +27,7 @@ public class NavBarTabSelectedListener implements BottomNavigationBar.OnTabSelec
     public void onTabSelected(int position) {
         switch(position){
             case 2:
-                FragmentDialog overlay = new FragmentDialog();
-                overlay.show(supportfragmentManager, "Form");
+                EntryFormUtil.show();
                 break;
 
             case 3:
