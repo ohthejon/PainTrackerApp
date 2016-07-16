@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.avtechlabs.peacock.Peacock;
@@ -29,6 +30,7 @@ import com.jonathenchen.paintracker.utilites.EntryFormUtil;
 public class FragmentDialog extends DialogFragment {
     private SectionsPagerAdaper sectionsPagerAdaper;
     private ViewPager viewPager;
+    private ImageButton imageButton;
     Button ok, cancel;
     ToastUtil toast;
 
@@ -116,6 +118,7 @@ public class FragmentDialog extends DialogFragment {
                 getDialog().dismiss();
             }
         });
+
     }
 
     public void initPagerTabStrip(View view){

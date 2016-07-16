@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -34,16 +35,39 @@ import java.util.List;
  */
 public class DetailsFragment extends ListFragment {
     ToastUtil toast;
+    View view;
+    int height, count = 0;
+    String[] rows;
+    ArrayAdapter<String> adapter;
+    boolean setLayout = false;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.fragment_details, container, false);
+        view = inflater.inflate(R.layout.fragment_details, container, false);
         setHasOptionsMenu(true);
+
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                //view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                height = view.getMeasuredHeight();
+
+                if(height > 0 && count == 0){
+                    adapter = new DetailsAdapter(getActivity(), rows, height);
+                    setListAdapter(adapter);
+                    Log.d("entries", height + "");
+                    count ++;
+                }
+            }
+        });
+
         return view;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
+
 
         String title = "";
         Calendar cal = Calendar.getInstance();
@@ -67,7 +91,7 @@ public class DetailsFragment extends ListFragment {
         DecimalFormat df = new DecimalFormat(("#.#"));
         df.setRoundingMode(RoundingMode.CEILING);
 
-        String[] rows = new String[9];
+        rows = new String[9];
         String firstRow = "Date,Avg. Pain, Energy";
         rows[0] = firstRow;
         int n = 0;
@@ -91,9 +115,8 @@ public class DetailsFragment extends ListFragment {
         String lastRow = "Weekly Avg," + df.format(totalAvgPain) + "," + df.format(totalEnergy);
         rows[8] = lastRow;
 
-        ArrayAdapter<String> adapter = new DetailsAdapter(getActivity(), rows);
+        adapter = new DetailsAdapter(getActivity(), rows, 0);
         setListAdapter(adapter);
-
     }
 
     @Override

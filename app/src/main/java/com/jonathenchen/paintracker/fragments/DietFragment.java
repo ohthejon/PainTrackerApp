@@ -26,6 +26,27 @@ public class DietFragment extends Fragment{
         EntryFormUtil.alcoholIntake = (Slider)view.findViewById(R.id.slider_alcohol);
         EntryFormUtil.diaryIntake = (Slider)view.findViewById(R.id.slider_diary);
 
+        Slider.ValueDescriptionProvider valueDescriptionProvider = new Slider.ValueDescriptionProvider() {
+            @Override
+            public String getDescription(int value) {
+                switch(value){
+                    case 0:
+                        return "None";
+                    case 5:
+                        return "Some";
+                    case 10:
+                        return "A Lot";
+                }
+                return "";
+            }
+        };
+
+        EntryFormUtil.carbIntake.setValueDescriptionProvider(valueDescriptionProvider);
+        EntryFormUtil.sugarIntake.setValueDescriptionProvider(valueDescriptionProvider);
+        EntryFormUtil.glutenIntake.setValueDescriptionProvider(valueDescriptionProvider);
+        EntryFormUtil.alcoholIntake.setValueDescriptionProvider(valueDescriptionProvider);
+        EntryFormUtil.diaryIntake.setValueDescriptionProvider(valueDescriptionProvider);
+
         List<Diet> dietList = Diet.find(Diet.class, "date = ?", EntryFormUtil.date);
         if(dietList.size() > 0){
             Diet diet = dietList.get(0);
