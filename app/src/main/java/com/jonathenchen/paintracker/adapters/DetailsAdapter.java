@@ -1,6 +1,7 @@
 package com.jonathenchen.paintracker.adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,17 @@ import com.jonathenchen.paintracker.R;
  * Created by adhithyan-3592 on 14/07/16.
  */
 
+/*
+    In week details this adapter will be set.
+    * For every details drawn on screen. this will be called twice.
+    * --- a small hack to make list view fill entire screen ---
+    * for first time when it is called, height is zero we just keep on appending to the screen with a white text.
+      this will enable us to calculate the height of screen when full invisble text is added to screen.
+    * the height of list view will be set in caller view.
+    * from that caller view we obtain height and again call this adapter
+    * we divide the height by 10 since we need to a show 9 rows in list view and some extra space for beauty.
+    * --- hack ends ---
+ */
 public class DetailsAdapter extends ArrayAdapter<String>{
     Context context;
     String[] values;
@@ -34,7 +46,6 @@ public class DetailsAdapter extends ArrayAdapter<String>{
         View rowView = inflater.inflate(R.layout.details_list, parent, false);
         if(height > 0){
             rowView.getLayoutParams().height = height;
-            Log.d("entries", height + "");
         }
 
 
@@ -55,7 +66,8 @@ public class DetailsAdapter extends ArrayAdapter<String>{
         energy.setText(cols[2]);
 
         if((cols[0].equals("Date") || cols[0].equals("Weekly Avg")) && height > 0){
-            rowView.setBackground(context.getResources().getDrawable(R.color.grey));
+            if(Build.VERSION.SDK_INT >= 16)
+                rowView.setBackground(context.getResources().getDrawable(R.color.grey));
         }
 
         return rowView;

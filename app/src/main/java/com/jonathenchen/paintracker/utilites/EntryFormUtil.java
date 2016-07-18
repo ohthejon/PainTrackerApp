@@ -14,6 +14,11 @@ import com.rey.material.widget.Slider;
  * Created by adhithyan-3592 on 14/07/16.
  */
 
+
+/*
+this is the main class based on which entry form details are populated.
+all the variables are static, since we need them for the entire app cycle.
+ */
 public class EntryFormUtil {
 
     //General fragment
@@ -105,14 +110,29 @@ public class EntryFormUtil {
         else
             return 10;
     }
+
+    /*
+    when user click ok in entry form extract all tab values.
+    check if a entry for a date is present. if present just update the values.
+    else add new entry;
+     */
     public static void commit(){
 
+        //entry for a chosen date is not present. Then save to db.
         if(YourDay.find(YourDay.class, "date = ?", date).size() == 0){
             getGeneralFragmentValues().save();
             getDietFragmentValues().save();
             getSymptomsFragmentValues().save();
             Log.d("entries", "save");
         }else{
+                /*
+                    Entry for a date is present in db.
+                    Then we need to update.
+                    We use sugar orm, and it has no inbuilt support for inplace updates.
+                    So we use a hack:
+                        -we remove the previous entry for the current date and
+                        -insert with new entry for the current date.
+                 */
                 YourDay.deleteAll(YourDay.class, "date = ?", date);
                 Diet.deleteAll(Diet.class, "date = ?", date);
                 Symptoms.deleteAll(Symptoms.class, "date = ?", date);

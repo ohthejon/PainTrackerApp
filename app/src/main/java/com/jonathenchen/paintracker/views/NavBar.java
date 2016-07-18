@@ -11,6 +11,10 @@ import com.jonathenchen.paintracker.listeners.NavBarTabSelectedListener;
  * Created by adhithyan-3592 on 15/07/16.
  */
 
+/**
+ * from main activity nav bar is set by calling this class.
+ */
+
 public class NavBar {
     BottomNavigationBar bottomNavigationBar;
     Context context;

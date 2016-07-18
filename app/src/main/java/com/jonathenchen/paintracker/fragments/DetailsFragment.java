@@ -33,6 +33,12 @@ import java.util.List;
 /**
  * Created by adhithyan-3592 on 15/07/16.
  */
+
+/*
+    this fragment will be called when details list view is needed to be shown on screen.
+    this calls detailsadapter twice.
+    check code for two calls and related explanation.
+ */
 public class DetailsFragment extends ListFragment {
     ToastUtil toast;
     View view;
@@ -46,6 +52,11 @@ public class DetailsFragment extends ListFragment {
         view = inflater.inflate(R.layout.fragment_details, container, false);
         setHasOptionsMenu(true);
 
+        /*
+        Check onActivityCreated function comment before reading this.
+        this listener will be notified with measured after we append white text to adapter.
+        from the height obtained, we again
+         */
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -68,7 +79,21 @@ public class DetailsFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
+        /*
+          we extract symptoms for the desired week (for 7 days) from db
+            - calculate avgpain from morning, evening and midday pain
+            - energy is pulled directly
 
+          after taking all the above values, calculate weekly avgpain and weekly energy and display.
+
+          for getting desired week the global variable in Detailsutil.weekIncrement variable is used.
+          when the activity is called first time - weekIncrement will be one since we need the current week data
+          and get the seven days of current week from calendar and related entries of symptoms from db
+          using date as query parameter.
+
+          for previous week entries we increment weekIncrement, pull from db repeat above steps and show list.
+          similarly for next week entries we decrement weekIncrement and repeat above process.
+         */
         String title = "";
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -7 * DetailsUtil.weekIncrement);
@@ -115,6 +140,12 @@ public class DetailsFragment extends ListFragment {
         String lastRow = "Weekly Avg," + df.format(totalAvgPain) + "," + df.format(totalEnergy);
         rows[8] = lastRow;
 
+        /*
+        the first call to details adapter will be from here and we pass height as 0.
+        this is because only after layout is drawn on screen. we will get height.
+        so in this call, we just append the screen with white text which won't be visible.
+        after appending the global layout listener will be notified.
+         */
         adapter = new DetailsAdapter(getActivity(), rows, 0);
         setListAdapter(adapter);
     }
@@ -139,6 +170,11 @@ public class DetailsFragment extends ListFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        /*
+            *action_prev - go to previous week
+            *action_next - go to next week
+            set the global variable of week increment in details tab based on chosen action.
+         */
         switch (id){
             case R.id.action_prev:
                 DetailsUtil.weekIncrement++;

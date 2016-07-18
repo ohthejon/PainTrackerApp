@@ -1,0 +1,3 @@
+alias=paintracker
+keystore_password=paintracker
+alias_password=paintracker

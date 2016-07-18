@@ -21,6 +21,9 @@ import com.rey.material.widget.Slider;
 import java.util.Calendar;
 import java.util.List;
 
+/*
+show general entry form
+ */
 public class GeneralFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

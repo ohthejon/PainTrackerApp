@@ -27,6 +27,10 @@ import com.jonathenchen.paintracker.utilites.EntryFormUtil;
  * Created by adhithyan-3592 on 13/07/16.
  */
 
+/*
+on clicking add button this dialog will be shown.
+from which all 4 dialogs diet,general,symptoms,macrodata will be shown as tabs.
+ */
 public class FragmentDialog extends DialogFragment {
     private SectionsPagerAdaper sectionsPagerAdaper;
     private ViewPager viewPager;

@@ -15,6 +15,11 @@ import java.util.Calendar;
  * Created by adhithyan-3592 on 15/07/16.
  */
 
+/*
+this will be called when sleep time in entry form is clicked.
+after user selects the sleep time we update the view to show chosen time and set global variable sleeptime
+in entry form util
+ */
 public class TimeListener implements View.OnClickListener {
     final TextView timer;
     Activity activity;

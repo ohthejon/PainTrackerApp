@@ -11,6 +11,10 @@ import org.json.JSONObject;
  * Created by adhithyan-3592 on 13/07/16.
  */
 
+/*
+    we use sugar orm for db manipulation.
+    this class is used to create yourday table and related db manipulation.
+ */
 public class YourDay extends SugarRecord {
     public int activityLevel, stressLevel, sleepLength;
     public String sleepTime;
@@ -25,7 +29,7 @@ public class YourDay extends SugarRecord {
         this.sleepLength = sleepLength;
         this.sleepTime = sleepTime;
         this.date = date;
-        log();
+        //log();
     }
 
     public void log(){

@@ -36,6 +36,10 @@ import com.jonathenchen.paintracker.views.NavBar;
 import java.util.LinkedList;
 import java.util.List;
 
+/*
+    implementing location listener class, so that we can handle get location co-ordinates
+    and get weather data for that location
+ */
 public class MainActivity extends AppCompatActivity implements LocationListener {
     BottomNavigationBar bottomNavigationBar;
     FloatingActionButton fab;
@@ -49,12 +53,24 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /*
+            binding navigation bar with resource file and adding on click listener to it.
+         */
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
         new NavBar(this, bottomNavigationBar, getSupportFragmentManager(), getFragmentManager()).set();
 
+        /*
+            saving support fragment manager to a global variable, since app mainly uses fragments
+            to achieve required functionality.
+         */
         EntryFormUtil.supportFragmentManager = getSupportFragmentManager();
         EntryFormUtil.bottomNavigationBar = bottomNavigationBar;
 
+        /*
+            for android os from marshmallow, certain permissions are to be granted runtime.
+            here we are checking if location permission is granted and turning on gps to get
+            user co-ordinates to pull weather data
+         */
         checkAndAskPermission();
         checkAndEnableGPS();
     }
@@ -64,6 +80,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     }
 
+    /*
+        if location permission is granted and gps is turned on, then this function will be notified.
+        Then extract latitude and longitude from the current location and get weather for the location using
+        forecast task which is an async task.
+     */
     @Override
     public void onLocationChanged(Location location) {
         double lat = location.getLongitude();
@@ -94,6 +115,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     }
 
+    /*
+        we need location permission which should be granted by user for os >= marshmallow.
+        The following function checks and asks location permission to be granted if not is granted.
+     */
     public void checkAndAskPermission(){
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
         List<String> permissionList = new LinkedList<String>();
@@ -107,6 +132,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             ActivityCompat.requestPermissions(this, permissionList.toArray(new String[permissionList.size()]), 100);
     }
 
+    /*
+        after checking for location permission, we must ask user to turn on gps to get co-ordinates.
+     */
     public void checkAndEnableGPS(){
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);

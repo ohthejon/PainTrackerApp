@@ -27,13 +27,21 @@ import okhttp3.Response;
  * Created by adhithyan-3592 on 13/07/16.
  */
 
+/*
+    after we get location in main activity, this async task will be called.
+    It fetches weather json for the current location and  sets the
+    * temperature
+    * pressure
+    * humidity
+    * precipitation
+    to global variables found in EntryformUtil.java
+ */
 public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
     Context context;
     ToastUtil toast;
     AlertUtil alert;
     String location = "/";
     String url = "";
-    MaterialDialog progressDialog;
     OkHttpClient client;
     boolean internet;
 
@@ -45,7 +53,6 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
         url = context.getString(R.string.forecast_url) + context.getString(R.string.forecast_api_key) + location;
         client = new OkHttpClient();
         internet = internetConnected();
-        Log.d("loca", url);
     }
 
 
@@ -57,9 +64,7 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
-
         Response response;
-
 
         try{
             response = client.newCall(request).execute();
@@ -73,17 +78,14 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
             return null;
         }
 
-
     }
 
     @Override
     protected void onPostExecute(JSONObject forecast){
-        Log.d("loca", forecast + "");
         if(forecast != null){
             StringBuilder weather = new StringBuilder();
             try{
                 forecast = forecast.getJSONObject("currently");
-                Log.d("loca", forecast.toString());
                 String temperature = "temperature", pressure = "pressure", humidity = "humidity", precipitation = "precipIntensity";
 
                 EntryFormUtil.temperature = forecast.get(temperature) + "";

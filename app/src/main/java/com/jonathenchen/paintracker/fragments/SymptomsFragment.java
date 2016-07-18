@@ -15,6 +15,9 @@ import com.rey.material.widget.Slider;
 
 import java.util.List;
 
+/*
+show symptoms entry form
+ */
 public class SymptomsFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

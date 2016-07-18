@@ -12,6 +12,10 @@ import com.jonathenchen.paintracker.utilites.EntryFormUtil;
 /**
  * Created by adhithyan-3592 on 12/07/16.
  */
+
+/*
+    when tabs in nav bar is selected, this will be called.
+ */
 public class NavBarTabSelectedListener implements BottomNavigationBar.OnTabSelectedListener {
     Context context;
     FragmentManager supportfragmentManager;

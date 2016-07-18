@@ -14,6 +14,9 @@ import com.rey.material.widget.Slider;
 
 import java.util.List;
 
+/*
+show diet entry form
+ */
 public class DietFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

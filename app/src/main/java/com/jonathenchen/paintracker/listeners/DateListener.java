@@ -20,6 +20,12 @@ import java.util.Calendar;
  * Created by adhithyan-3592 on 15/07/16.
  */
 
+/*
+    when date in entry form is clicked this will be notified.
+    when the date is chosen by user, we update the entry form the show the chosen date
+    and also set DetailsUtil.weekIncrement, since we want to display entries of chosen date's week
+    after entry form is submitted.
+ */
 public class DateListener implements View.OnClickListener {
     final TextView date;
     Activity activity;

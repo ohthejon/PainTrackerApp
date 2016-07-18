@@ -11,6 +11,10 @@ import org.json.JSONObject;
  * Created by adhithyan-3592 on 13/07/16.
  */
 
+/*
+    we use sugar orm for db manipulation.
+    this class is used to create diet table and related db manipulation.
+ */
 public class Diet extends SugarRecord {
     public String glutenIntake, sugarIntake, carbIntake, alcoholIntake, diaryIntake, date;
 
@@ -24,7 +28,7 @@ public class Diet extends SugarRecord {
         alcoholIntake = alcohol;
         diaryIntake = diary;
         this.date = date;
-        log();
+        //log();
     }
 
     public void log(){

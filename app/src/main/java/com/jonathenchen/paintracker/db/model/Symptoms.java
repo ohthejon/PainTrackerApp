@@ -11,9 +11,14 @@ import org.json.JSONObject;
  * Created by adhithyan-3592 on 13/07/16.
  */
 
+/*
+    we use sugar orm for db manipulation.
+    this class is used to create symptoms table and related db manipulation.
+ */
 public class Symptoms extends SugarRecord {
     public int morningPain, middayPain, eveningPain, energy, nausea;
     String date;
+
 
     public Symptoms(){
     }
@@ -25,7 +30,7 @@ public class Symptoms extends SugarRecord {
         this.energy = energy;
         this.nausea = nausea;
         this.date = date;
-        log();
+        //log();
     }
 
     public void log(){

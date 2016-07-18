@@ -15,6 +15,12 @@ import com.jonathenchen.paintracker.utilites.EntryFormUtil;
  * Created by adhithyan-3592 on 15/07/16.
  */
 
+/*
+show weather data.
+after forecast task get's executed, weather info will be set to related varibles in EntryformUtil.
+if variables are not set, we assume some error occured while pulling weather data and
+show related message.
+ */
 public class WeatherFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){

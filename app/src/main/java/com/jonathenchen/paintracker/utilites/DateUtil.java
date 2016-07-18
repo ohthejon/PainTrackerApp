@@ -7,6 +7,9 @@ import java.util.Date;
  * Created by adhithyan-3592 on 14/07/16.
  */
 
+/*
+this is just a helper class to handle date related taske
+ */
 public class DateUtil {
 
     public String[] days = {"", "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"};
@@ -16,6 +19,10 @@ public class DateUtil {
         return months[i];
     }
 
+    /*
+        we need to show date in format MM/DD DAY_NAME in entry form.
+        this function is used to do the same but return todays date in above format.
+     */
     public String getToday(){
         StringBuilder date = new StringBuilder();
 
@@ -30,6 +37,10 @@ public class DateUtil {
         return date.toString();
     }
 
+    /*
+       we need to show date in format MM/DD DAY_NAME in entry form.
+       this function is used to do the same but return todays date for the argument calendar object..
+    */
     public String getDate(Calendar cal){
         StringBuilder date = new StringBuilder();
 
