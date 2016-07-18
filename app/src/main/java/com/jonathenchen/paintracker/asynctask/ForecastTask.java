@@ -31,7 +31,7 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
     Context context;
     ToastUtil toast;
     AlertUtil alert;
-    String location = "/10.6573,77.0107";
+    String location = "/";
     String url = "";
     MaterialDialog progressDialog;
     OkHttpClient client;
@@ -41,9 +41,11 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
         this.context = context;
         toast = (ToastUtil)new Peacock().getUtility(this.context, Utility.TOAST);
         alert = (AlertUtil)new Peacock().getUtility(this.context, Utility.ALERT);
+        location = location + EntryFormUtil.location;
         url = context.getString(R.string.forecast_url) + context.getString(R.string.forecast_api_key) + location;
         client = new OkHttpClient();
         internet = internetConnected();
+        Log.d("loca", url);
     }
 
 
@@ -76,10 +78,12 @@ public class ForecastTask extends AsyncTask<Void, Void, JSONObject> {
 
     @Override
     protected void onPostExecute(JSONObject forecast){
+        Log.d("loca", forecast + "");
         if(forecast != null){
             StringBuilder weather = new StringBuilder();
             try{
                 forecast = forecast.getJSONObject("currently");
+                Log.d("loca", forecast.toString());
                 String temperature = "temperature", pressure = "pressure", humidity = "humidity", precipitation = "precipIntensity";
 
                 EntryFormUtil.temperature = forecast.get(temperature) + "";

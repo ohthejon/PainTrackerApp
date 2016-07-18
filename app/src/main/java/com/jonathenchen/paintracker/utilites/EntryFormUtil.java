@@ -54,6 +54,7 @@ public class EntryFormUtil {
     public static FragmentManager supportFragmentManager = null;
     public static BottomNavigationBar bottomNavigationBar = null;
 
+    public static String location = "";
     /*private static Symptoms symptoms;
     private static YourDay yourDay;
     private static Diet diet;*/

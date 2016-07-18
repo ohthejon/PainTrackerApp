@@ -1,10 +1,20 @@
 package com.jonathenchen.paintracker.activities;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -23,11 +33,14 @@ import com.jonathenchen.paintracker.asynctask.ForecastTask;
 import com.jonathenchen.paintracker.utilites.EntryFormUtil;
 import com.jonathenchen.paintracker.views.NavBar;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements LocationListener {
     BottomNavigationBar bottomNavigationBar;
     FloatingActionButton fab;
     LocationManager locationManager;
-    Location location;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,25 +49,34 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        new ForecastTask(this).execute();
-
-        bottomNavigationBar = (BottomNavigationBar)findViewById(R.id.bottom_navigation_bar);
+        bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
         new NavBar(this, bottomNavigationBar, getSupportFragmentManager(), getFragmentManager()).set();
 
         EntryFormUtil.supportFragmentManager = getSupportFragmentManager();
         EntryFormUtil.bottomNavigationBar = bottomNavigationBar;
 
-
+        checkAndAskPermission();
+        checkAndEnableGPS();
     }
 
 
-    public void setNavBar(){
+    public void setNavBar() {
 
     }
 
     @Override
     public void onLocationChanged(Location location) {
+        double lat = location.getLongitude();
+        double lon = location.getLatitude();
 
+        Log.d("loca", lat + "," + lon);
+        if (lat != 0d && lon != 0d) {
+            EntryFormUtil.location = lat + "," + lon;
+            new ForecastTask(this).execute();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                locationManager.removeUpdates(this);
+            }
+        }
     }
 
     @Override
@@ -69,6 +91,52 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onProviderDisabled(String provider) {
+
+    }
+
+    public void checkAndAskPermission(){
+        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
+        List<String> permissionList = new LinkedList<String>();
+
+        for(String permission: permissions){
+            if(ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED)
+                permissionList.add(permission);
+        }
+
+        if(permissionList.size() > 0)
+            ActivityCompat.requestPermissions(this, permissionList.toArray(new String[permissionList.size()]), 100);
+    }
+
+    public void checkAndEnableGPS(){
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+            boolean gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            boolean network = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+            if(network){
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10000, 1, this);
+                return;
+            }
+
+            if(gps){
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 1, this);
+                return;
+            }
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(this)
+                    .setTitle("Turn on GPS")
+                    .setMessage("GPS is required to pull weather data for the current location.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(intent);
+                        }
+                    })
+                    .setCancelable(false);
+            alert.show();
+        }else
+            checkAndAskPermission();
 
     }
 }
