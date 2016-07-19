@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -35,6 +37,7 @@ import com.jonathenchen.paintracker.views.NavBar;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 /*
     implementing location listener class, so that we can handle get location co-ordinates
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
          */
         EntryFormUtil.supportFragmentManager = getSupportFragmentManager();
         EntryFormUtil.bottomNavigationBar = bottomNavigationBar;
+         //open details tab at launch
 
         /*
             for android os from marshmallow, certain permissions are to be granted runtime.
@@ -73,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
          */
         checkAndAskPermission();
         checkAndEnableGPS();
+
     }
 
 
@@ -87,8 +92,21 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
      */
     @Override
     public void onLocationChanged(Location location) {
-        double lat = location.getLongitude();
-        double lon = location.getLatitude();
+        double lon = location.getLongitude();
+        double lat = location.getLatitude();
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+
+        try{
+            List<Address> locations = geocoder.getFromLocation(lat, lon, 1);
+            if(locations.size() > 0){
+                Address address = locations.get(0);
+                EntryFormUtil.currentLocation = address.getLocality();
+            }else{
+                EntryFormUtil.location = lat + "," + lon;
+            }
+        }catch(Exception ex){
+
+        }
 
         Log.d("loca", lat + "," + lon);
         if (lat != 0d && lon != 0d) {

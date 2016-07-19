@@ -20,7 +20,6 @@ import com.avtechlabs.peacock.enums.Utility;
 import com.avtechlabs.peacock.utilities.ToastUtil;
 import com.jonathenchen.paintracker.R;
 import com.jonathenchen.paintracker.listeners.DateListener;
-import com.jonathenchen.paintracker.utilites.DateUtil;
 import com.jonathenchen.paintracker.utilites.EntryFormUtil;
 
 /**
@@ -35,7 +34,7 @@ public class FragmentDialog extends DialogFragment {
     private SectionsPagerAdaper sectionsPagerAdaper;
     private ViewPager viewPager;
     private ImageButton imageButton;
-    Button ok, cancel;
+    android.widget.Button ok, cancel;
     ToastUtil toast;
 
     @Override
@@ -95,7 +94,7 @@ public class FragmentDialog extends DialogFragment {
                 case 2:
                     return "DIET";
                 case 3:
-                    return "MACRODATA";
+                    return "WEATHER";
                 default:
                     return null;
             }

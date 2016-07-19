@@ -52,7 +52,9 @@ public class GeneralFragment extends Fragment {
             EntryFormUtil.stressLevel.setValue(stress, false);
             EntryFormUtil.activityLevel.setValue(activity, false);
             EntryFormUtil.sleepLength.setValue(sleepL, false);
-            timer.setText(sleepTime);
+
+            if(sleepTime.length() > 0)
+                timer.setText(sleepTime);
 
             EntryFormUtil.genralEntry = true;
         }

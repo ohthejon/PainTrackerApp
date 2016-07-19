@@ -51,7 +51,7 @@ public class DetailsFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         view = inflater.inflate(R.layout.fragment_details, container, false);
         setHasOptionsMenu(true);
-
+        toast = (ToastUtil)new Peacock().getUtility(getActivity(), Utility.TOAST);
         /*
         Check onActivityCreated function comment before reading this.
         this listener will be notified with measured after we append white text to adapter.
@@ -94,10 +94,16 @@ public class DetailsFragment extends ListFragment {
           for previous week entries we increment weekIncrement, pull from db repeat above steps and show list.
           similarly for next week entries we decrement weekIncrement and repeat above process.
          */
+
+        if(DetailsUtil.weekIncrement < 0){
+            DetailsUtil.weekIncrement = 0;
+            toast.showLongToast("You can't go beyond current week.");
+        }
+
         String title = "";
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -7 * DetailsUtil.weekIncrement);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         String[] dates = new String[7];
         DateUtil dateUtil = new DateUtil();
         for(int i=0; i<7; i++){
@@ -113,7 +119,7 @@ public class DetailsFragment extends ListFragment {
         }
 
         getActivity().setTitle(title);
-        DecimalFormat df = new DecimalFormat(("#.#"));
+        DecimalFormat df = new DecimalFormat(("#.##"));
         df.setRoundingMode(RoundingMode.CEILING);
 
         rows = new String[9];
@@ -128,7 +134,7 @@ public class DetailsFragment extends ListFragment {
                 rows[i] = dates[i-1] + ",-,-";
             else{
                 Symptoms symptoms = symptomsList.get(0);
-                float avgPain = (symptoms.morningPain + symptoms.middayPain + symptoms.eveningPain)/3;
+                double avgPain = (symptoms.morningPain + symptoms.middayPain + symptoms.eveningPain)/3;
                 totalAvgPain += avgPain;
                 totalEnergy += symptoms.energy;
                 rows[i] = dates[i-1] + "," + df.format(avgPain) + "," + df.format(symptoms.energy);

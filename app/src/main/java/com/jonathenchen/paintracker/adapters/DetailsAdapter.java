@@ -43,15 +43,19 @@ public class DetailsAdapter extends ArrayAdapter<String>{
     public View getView(int position, View convertView, ViewGroup parent){
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View rowView = inflater.inflate(R.layout.details_list, parent, false);
+        int layout = bold(position) ? R.layout.details_bold : R.layout.details_list;
+        View rowView = inflater.inflate(layout, parent, false);
         if(height > 0){
             rowView.getLayoutParams().height = height;
         }
 
 
-        TextView date = (TextView)rowView.findViewById(R.id.textview_list_date);
-        TextView avgPain = (TextView)rowView.findViewById(R.id.textview_list_avgpain);
-        TextView energy = (TextView)rowView.findViewById(R.id.textview_list_energy);
+        int dateId = bold(position) ? R.id.textview_list_date_bold : R.id.textview_list_date;
+        int painId = bold(position) ? R.id.textview_list_avgpain_bold : R.id.textview_list_avgpain;
+        int energyId = bold(position) ? R.id.textview_list_energy_bold : R.id.textview_list_energy;
+        TextView date = (TextView)rowView.findViewById(dateId);
+        TextView avgPain = (TextView)rowView.findViewById(painId);
+        TextView energy = (TextView)rowView.findViewById(energyId);
 
         String[] cols = values[position].split(",");
 
@@ -65,11 +69,10 @@ public class DetailsAdapter extends ArrayAdapter<String>{
         avgPain.setText(cols[1]);
         energy.setText(cols[2]);
 
-        if((cols[0].equals("Date") || cols[0].equals("Weekly Avg")) && height > 0){
-            if(Build.VERSION.SDK_INT >= 16)
-                rowView.setBackground(context.getResources().getDrawable(R.color.grey));
-        }
-
         return rowView;
+    }
+
+    boolean bold(int position){
+        return position == 0 || position == 8;
     }
 }

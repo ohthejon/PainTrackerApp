@@ -5,5 +5,5 @@ package com.jonathenchen.paintracker.utilites;
  */
 
 public class DetailsUtil {
-    public static int weekIncrement = 1;
+    public static int weekIncrement = 0;
 }

@@ -51,6 +51,7 @@ public class EntryFormUtil {
     public static boolean symptomsEntry = false;
     public static boolean dietEntry = false;
 
+    public static String currentLocation = "";
     public static String temperature = "0";
     public static String pressure = "0";
     public static String humidity = "0";

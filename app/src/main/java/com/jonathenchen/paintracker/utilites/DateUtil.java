@@ -31,7 +31,7 @@ public class DateUtil {
         date.append(cal.get(Calendar.MONTH) + 1);
         date.append("/");
         date.append(cal.get(Calendar.DATE));
-        date.append(" ");
+        date.append("  ");
         date.append(days[cal.get(Calendar.DAY_OF_WEEK)]);
 
         return date.toString();
@@ -47,7 +47,7 @@ public class DateUtil {
         date.append(cal.get(Calendar.MONTH) + 1);
         date.append("/");
         date.append(cal.get(Calendar.DATE));
-        date.append(" ");
+        date.append("  ");
         date.append(days[cal.get(Calendar.DAY_OF_WEEK)]);
 
         return date.toString();

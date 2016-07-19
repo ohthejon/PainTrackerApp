@@ -26,19 +26,21 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_weather, container, false);
 
+        TextView loc = (TextView)view.findViewById(R.id.textview_loc);
         TextView temperature = (TextView)view.findViewById(R.id.textview_temp);
         TextView pressure = (TextView)view.findViewById(R.id.textview_pressure);
         TextView humdity = (TextView)view.findViewById(R.id.textview_humidity);
         TextView precipitation = (TextView)view.findViewById(R.id.textview_precipitation);
 
-        if(EntryFormUtil.temperature.equals("0")){
+        /*if(EntryFormUtil.temperature.equals("0")){
             temperature.setText("Connect to internet to pull macrodata");
-        }else {
-            temperature.setText("Weather: " + EntryFormUtil.temperature + " F");
-            pressure.setText("Pressure: " + EntryFormUtil.pressure + " in");
-            humdity.setText("Humidity: " + EntryFormUtil.humidity + "%");
-            precipitation.setText("Precip: " + EntryFormUtil.precipitation + "in");
-        }
+        }else {*/
+            loc.setText(EntryFormUtil.currentLocation);
+            temperature.setText(EntryFormUtil.temperature + " F");
+            pressure.setText(EntryFormUtil.pressure + " in");
+            humdity.setText(EntryFormUtil.humidity + "%");
+            precipitation.setText(EntryFormUtil.precipitation + " in");
+        //}
 
 
         return view;

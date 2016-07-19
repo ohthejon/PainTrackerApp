@@ -30,16 +30,18 @@ public class NavBar {
     }
 
     public void set(){
+        bottomNavigationBar.clearAnimation();
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
+        bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
+
         bottomNavigationBar.setActiveColor(R.color.colorAccent)
                 .setInActiveColor(R.color.black);
-
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_home_black_24dp, "Home"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_timeline_black_24dp, "Timeline"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_add_white_24dp, "Add"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_list_black_24dp, "Details"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_email_black_24dp, "Placeholder"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_home_black_24dp, ""))
+                .addItem(new BottomNavigationItem(R.drawable.ic_timeline_black_24dp, ""))
+                .addItem(new BottomNavigationItem(R.drawable.ic_add_white_24dp, ""))
+                .addItem(new BottomNavigationItem(R.drawable.ic_list_black_24dp, ""))
+                .addItem(new BottomNavigationItem(R.drawable.ic_email_black_24dp, ""))
                 .initialise();
 
 
