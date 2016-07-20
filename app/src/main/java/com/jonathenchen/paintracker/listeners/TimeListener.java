@@ -39,10 +39,12 @@ public class TimeListener implements View.OnClickListener {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 String meridian = selectedHour >= 12 ? "PM" : "AM";
+                selectedHour = (selectedHour > 12) ? selectedHour - 12 : selectedHour;
+                selectedHour = (selectedHour == 0) ? 12 : selectedHour;
                 timer.setText( selectedHour + ":" + selectedMinute + " " + meridian);
                 EntryFormUtil.sleepT = timer.getText().toString();
             }
-        }, hour, minute, true);//Yes 24 hour time
+        }, hour, minute, false);//false 12 hour time
         mTimePicker.setTitle("Select Sleep Time");
         mTimePicker.show();
     }

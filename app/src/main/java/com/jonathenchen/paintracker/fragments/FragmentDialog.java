@@ -119,6 +119,7 @@ public class FragmentDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 getDialog().dismiss();
+                EntryFormUtil.bottomNavigationBar.selectTab(3);
             }
         });
 
