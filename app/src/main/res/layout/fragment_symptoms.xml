@@ -43,8 +43,8 @@
             app:sl_minValue="0"
             app:sl_maxValue="10"
             app:sl_value="1"
-            app:sl_trackCap="round"
             app:sl_discreteMode="true"
+            app:sl_trackCap="round"
             app:sl_stepValue="1"
             android:layout_gravity="left|top"
             android:id="@+id/slider_morning_pain"
@@ -65,7 +65,8 @@
             android:paddingLeft="10dp"
             android:layout_below="@+id/slider_morning_pain"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:paddingTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -78,6 +79,7 @@
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
             android:textColor="@color/greyBlue"
+            android:paddingTop="15dp"
             />
 
         <com.rey.material.widget.Slider
@@ -88,9 +90,9 @@
             app:sl_minValue="0"
             app:sl_maxValue="10"
             app:sl_value="1"
-            app:sl_trackCap="round"
-            app:sl_discreteMode="true"
             app:sl_stepValue="1"
+            app:sl_discreteMode="true"
+            app:sl_trackCap="round"
             android:id="@+id/slider_midday_pain"
             android:layout_below="@+id/textView10"
             android:layout_alignParentLeft="true"
@@ -109,7 +111,8 @@
             android:paddingLeft="10dp"
             android:layout_below="@+id/slider_midday_pain"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:paddingTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -122,6 +125,7 @@
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
             android:textColor="@color/greyBlue"
+            android:paddingTop="15dp"
             />
 
         <com.rey.material.widget.Slider
@@ -132,9 +136,9 @@
             app:sl_minValue="0"
             app:sl_maxValue="10"
             app:sl_value="1"
-            app:sl_trackCap="round"
-            app:sl_discreteMode="true"
             app:sl_stepValue="1"
+            app:sl_discreteMode="true"
+            app:sl_trackCap="round"
             android:id="@+id/slider_evening_pain"
             android:layout_below="@+id/textView12"
             android:layout_alignParentLeft="true"
@@ -142,7 +146,8 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="0dp"
-            android:paddingBottom="0dp"/>
+            android:paddingBottom="0dp"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -153,7 +158,8 @@
             android:paddingLeft="10dp"
             android:layout_below="@+id/slider_evening_pain"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:paddingTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -165,6 +171,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
+            android:paddingTop="15dp"
             android:textColor="@color/greyBlue"
             />
 
@@ -176,9 +183,9 @@
             app:sl_minValue="0"
             app:sl_maxValue="10"
             app:sl_value="1"
-            app:sl_trackCap="round"
-            app:sl_discreteMode="true"
             app:sl_stepValue="1"
+            app:sl_discreteMode="true"
+            app:sl_trackCap="round"
             android:id="@+id/slider_energy"
             android:layout_below="@+id/textView14"
             android:layout_alignParentLeft="true"
@@ -197,7 +204,8 @@
             android:paddingLeft="10dp"
             android:layout_below="@+id/slider_energy"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:paddingTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -210,6 +218,7 @@
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
             android:textColor="@color/greyBlue"
+            android:paddingTop="15dp"
             />
 
         <com.rey.material.widget.Slider
@@ -220,8 +229,8 @@
             app:sl_minValue="0"
             app:sl_maxValue="10"
             app:sl_value="1"
-            app:sl_trackCap="round"
             app:sl_discreteMode="true"
+            app:sl_trackCap="round"
             app:sl_stepValue="1"
             android:id="@+id/slider_nausea"
             android:layout_below="@+id/textView16"

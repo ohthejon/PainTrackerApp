@@ -13,6 +13,7 @@ import android.widget.TimePicker;
 import com.jonathenchen.paintracker.R;
 import com.jonathenchen.paintracker.db.model.Symptoms;
 import com.jonathenchen.paintracker.db.model.YourDay;
+import com.jonathenchen.paintracker.listeners.SliderListener;
 import com.jonathenchen.paintracker.listeners.TimeListener;
 import com.jonathenchen.paintracker.utilites.DateUtil;
 import com.jonathenchen.paintracker.utilites.EntryFormUtil;
@@ -40,6 +41,8 @@ public class GeneralFragment extends Fragment {
 
         ImageButton imageButton = (ImageButton)view.findViewById(R.id.image_button_time);
         imageButton.setOnClickListener(new TimeListener(timer, getActivity()));
+
+        //TextView actChange = (TextView)view.findViewById(R.id.textview_sact);
 
         List<YourDay> generals = YourDay.find(YourDay.class, "date = ?", EntryFormUtil.date);
         if(generals.size() > 0){

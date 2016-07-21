@@ -18,7 +18,8 @@
             android:text="Gluten Intake"
             android:id="@+id/textView18"
             android:layout_gravity="left|top"
-            android:paddingLeft="10dp"/>
+            android:paddingLeft="10dp"
+            android:paddingTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,7 +32,8 @@
             android:paddingRight="10dp"
             android:layout_above="@+id/slider_gluten"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:paddingTop="15dp"/>
 
         <com.rey.material.widget.Slider
             style="@style/Material.Widget.Slider"
@@ -41,9 +43,9 @@
             app:sl_minValue="0"
             app:sl_maxValue="10"
             app:sl_value="0"
+            app:sl_stepValue="5"
             app:sl_trackCap="round"
             app:sl_discreteMode="true"
-            app:sl_stepValue="5"
             android:layout_gravity="left|top"
             android:id="@+id/slider_gluten"
             android:layout_below="@+id/textView18"
@@ -62,7 +64,8 @@
             android:paddingLeft="10dp"
             android:layout_below="@+id/slider_gluten"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:paddingTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,6 +78,7 @@
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
             android:textColor="@color/greyBlue"
+            android:paddingTop="15dp"
             />
 
         <com.rey.material.widget.Slider
@@ -106,7 +110,8 @@
             android:paddingLeft="10dp"
             android:layout_below="@+id/slider_sugar"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:paddingTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -119,6 +124,7 @@
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
             android:textColor="@color/greyBlue"
+            android:paddingTop="15dp"
             />
 
         <com.rey.material.widget.Slider
@@ -150,7 +156,8 @@
             android:paddingLeft="10dp"
             android:layout_below="@+id/slider_carb"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:paddingTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -163,6 +170,7 @@
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
             android:textColor="@color/greyBlue"
+            android:paddingTop="15dp"
             />
 
         <com.rey.material.widget.Slider
@@ -194,7 +202,8 @@
             android:paddingLeft="10dp"
             android:layout_below="@+id/slider_alcohol"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:paddingTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -207,6 +216,7 @@
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
             android:textColor="@color/greyBlue"
+            android:paddingTop="15dp"
             />
 
         <com.rey.material.widget.Slider

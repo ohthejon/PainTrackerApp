@@ -44,8 +44,8 @@
         app:sl_minValue="0"
         app:sl_maxValue="10"
         app:sl_value="1"
-        app:sl_trackCap="round"
         app:sl_discreteMode="true"
+        app:sl_trackCap="round"
         app:sl_stepValue="1"
         android:layout_gravity="left|top"
         android:id="@+id/slider_activity_level"
@@ -63,6 +63,7 @@
             android:text="Stress Level"
             android:id="@+id/textView3"
             android:paddingLeft="10dp"
+            android:paddingTop="15dp"
             android:layout_below="@+id/slider_activity_level"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -77,6 +78,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
+            android:paddingTop="15dp"
             android:textColor="@color/greyBlue"
             />
 
@@ -88,8 +90,8 @@
             app:sl_minValue="0"
             app:sl_maxValue="10"
             app:sl_value="1"
-            app:sl_trackCap="round"
             app:sl_discreteMode="true"
+            app:sl_trackCap="round"
             app:sl_stepValue="1"
             android:id="@+id/slider_stress_level"
             android:layout_below="@+id/textView3"
@@ -109,7 +111,8 @@
             android:layout_below="@+id/slider_stress_level"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:paddingLeft="10dp"/>
+            android:paddingLeft="10dp"
+            android:paddingTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -131,9 +134,9 @@
             app:sl_minValue="0"
             app:sl_maxValue="10"
             app:sl_value="1"
+            app:sl_stepValue="1"
             app:sl_trackCap="round"
             app:sl_discreteMode="true"
-            app:sl_stepValue="1"
             android:id="@+id/slider_sleep_length"
             android:layout_below="@+id/textView5"
             android:layout_alignParentLeft="true"
@@ -149,6 +152,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Sleep Time"
             android:id="@+id/textView7"
+            android:paddingTop="15dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:layout_below="@+id/slider_sleep_length"
@@ -162,6 +166,7 @@
             android:text="12:00 AM"
             android:id="@+id/textview_timer"
             android:clickable="true"
+            android:paddingTop="15dp"
             android:layout_below="@+id/slider_sleep_length"
             android:layout_toRightOf="@+id/textView"
             android:layout_toEndOf="@+id/textView" />
@@ -170,10 +175,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/image_button_time"
-            android:layout_below="@+id/slider_sleep_length"
+            android:paddingTop="15dp"
+            android:background="@drawable/ic_keyboard_arrow_down_black_24dp"
+            android:layout_alignBottom="@+id/textview_timer"
             android:layout_toRightOf="@+id/textview_timer"
-            android:layout_toEndOf="@+id/textview_timer"
-            android:background="@drawable/ic_keyboard_arrow_down_black_24dp"/>
+            android:layout_toEndOf="@+id/textview_timer" />
 
     </RelativeLayout>
 
