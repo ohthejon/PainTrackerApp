@@ -9,6 +9,7 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -47,6 +48,31 @@ public class FragmentDialog extends DialogFragment {
 
         sectionsPagerAdaper = new SectionsPagerAdaper(getChildFragmentManager());
         viewPager = (ViewPager)view.findViewById(R.id.pager);
+
+        /*viewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });*/
         viewPager.setAdapter(sectionsPagerAdaper);
 
         //PagerTabStrip tabStrip = (PagerTabStrip)viewPager.findViewById(R.id.pager_tab);

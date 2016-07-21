@@ -66,7 +66,7 @@
             android:layout_below="@+id/slider_morning_pain"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:paddingTop="15dp"/>
+            android:paddingTop="0dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
             android:textColor="@color/greyBlue"
-            android:paddingTop="15dp"
+            android:paddingTop="0dp"
             />
 
         <com.rey.material.widget.Slider
@@ -112,7 +112,7 @@
             android:layout_below="@+id/slider_midday_pain"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:paddingTop="15dp"/>
+            android:paddingTop="0dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -125,7 +125,7 @@
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
             android:textColor="@color/greyBlue"
-            android:paddingTop="15dp"
+            android:paddingTop="0dp"
             />
 
         <com.rey.material.widget.Slider
@@ -159,7 +159,7 @@
             android:layout_below="@+id/slider_evening_pain"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:paddingTop="15dp"/>
+            android:paddingTop="0dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -171,7 +171,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
-            android:paddingTop="15dp"
+            android:paddingTop="0dp"
             android:textColor="@color/greyBlue"
             />
 
@@ -205,7 +205,7 @@
             android:layout_below="@+id/slider_energy"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:paddingTop="15dp"/>
+            android:paddingTop="0dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -218,7 +218,7 @@
             android:layout_alignParentEnd="true"
             android:paddingRight="10dp"
             android:textColor="@color/greyBlue"
-            android:paddingTop="15dp"
+            android:paddingTop="0dp"
             />
 
         <com.rey.material.widget.Slider

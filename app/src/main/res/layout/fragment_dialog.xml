@@ -53,12 +53,6 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/relativeLayoutEntryTitle">
 
-    <!--android.support.v4.view.PagerTitleStrip
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_gravity="top"
-        android:textColor="@color/black"
-        /-->
 
         <android.support.v4.view.PagerTabStrip
             android:layout_width="match_parent"
